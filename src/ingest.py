@@ -1,6 +1,7 @@
 import bz2
 import json
 import re
+import sys
 import xml.etree.ElementTree as ET
 
 
@@ -65,4 +66,8 @@ def extract_text(raw_wiki_text: str) -> str:
 
 
 if __name__ == "__main__":
-    parse_dump("data/simplewiki-latest-pages-articles.xml.bz2", "data/documents.jsonl")
+    if len(sys.argv) != 3:
+        print(f"Usage: {sys.argv[0]} <input file> <output file>")
+        sys.exit(1)
+
+    parse_dump(sys.argv[1], sys.argv[2])
